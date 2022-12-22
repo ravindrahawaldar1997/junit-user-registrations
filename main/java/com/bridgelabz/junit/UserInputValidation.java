@@ -23,6 +23,18 @@ public class UserInputValidation {
 
         return matcher.matches();
     }
+    public static boolean isValidEmail(String email) {
+
+        String emailRegex = "^[a-zA-Z0-9_+-]+(?:\\.[a-zA-Z0-9_+-]+)*@" +
+                "([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}" +
+                "(?:(\\.([A-Za-z]{2})))?$";;
+
+        Pattern pattern = Pattern.compile(emailRegex);
+
+        Matcher matcher = pattern.matcher(email);
+
+        return matcher.matches();
+    }
 
     public static void main(String[] args) {
         UserInputValidation userInputValidation = new UserInputValidation();
@@ -34,5 +46,9 @@ public class UserInputValidation {
         System.out.println("Enter last name: ");
         String lastName = scanner.next();
         System.out.println(UserInputValidation.isValidLastName(lastName) ? "Valid" : "In Valid");
+        System.out.println("Enter email: ");
+        String email = scanner.next();
+        System.out.println(userInputValidation.isValidEmail(email) ? "Valid" : "In Valid");
+        scanner.close();
     }
 }
