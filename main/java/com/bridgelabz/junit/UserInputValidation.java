@@ -45,7 +45,15 @@ public class UserInputValidation {
     //Creating isValidPassword method to validate the password given by user using regex
     public static boolean isValidPassword(String password) {
         System.out.println(password);
-        String passwordRegex = "^(.*).{8,}$";
+        String passwordRegex = "^[a-z]{8}$";
+        Pattern pattern = Pattern.compile(passwordRegex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+    //Creating isValidPassword method to validate the password given by user using regex
+    public static boolean isValidPasswordOneUpperChar(String password) {
+        System.out.println(password);
+        String passwordRegex = "^[A-Z]{1}[a-z]{7}$";
         Pattern pattern = Pattern.compile(passwordRegex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
@@ -66,9 +74,13 @@ public class UserInputValidation {
         System.out.println("Enter mobile number: ");
         String mobileNumber = scanner.next();
         System.out.println(userInputValidation.isValidMobileNumber(mobileNumber) ? "Valid" : "In Valid");
-        System.out.println("Enetr password: ");
+        System.out.println("Eneter password: ");
         String password = scanner.next();
         System.out.println(userInputValidation.isValidPassword(password) ? "Valid" : "In Valid");
+        System.out.println("Eneter password with one upper char: ");
+        String passwordUpperChar = scanner.next();
+        System.out.println(userInputValidation.isValidPasswordOneUpperChar(passwordUpperChar) ? "Valid" : "In Valid");
         scanner.close();
     }
-}
+
+    }
