@@ -36,12 +36,19 @@ public class UserInputValidation {
         return matcher.matches();
     }
 
+    public static boolean isValidMobileNumber(String mobileNumber) {
+        String mobileNumberRegex =  "^[1-9]{2}[\\s][0-9]{10}$";
+        Pattern pattern = Pattern.compile(mobileNumberRegex);
+        Matcher matcher = pattern.matcher(mobileNumber);
+        return matcher.matches();
+    }
+
+
     public static void main(String[] args) {
         UserInputValidation userInputValidation = new UserInputValidation();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter first name: ");
         String firstName = scanner.next();
-        System.out.println(UserInputValidation.isValidFirstName(firstName) ? "Valid" : "In Valid");
         System.out.println(UserInputValidation.isValidFirstName(firstName) ? "Valid" : "In Valid");
         System.out.println("Enter last name: ");
         String lastName = scanner.next();
@@ -49,6 +56,9 @@ public class UserInputValidation {
         System.out.println("Enter email: ");
         String email = scanner.next();
         System.out.println(userInputValidation.isValidEmail(email) ? "Valid" : "In Valid");
+        System.out.println("Enter mobile number: ");
+        String mobileNumber = scanner.next();
+        System.out.println(userInputValidation.isValidMobileNumber(mobileNumber) ? "Valid" : "In Valid");
         scanner.close();
     }
 }
