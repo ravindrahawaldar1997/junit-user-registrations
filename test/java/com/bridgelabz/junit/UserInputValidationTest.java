@@ -17,6 +17,7 @@ public class UserInputValidationTest {
         boolean result = userInputValidation.isValidFirstName("Pr");
         Assert.assertEquals(false, result);
     }
+
     @Test
     public void givenLastName_WhenProper_ShouldReturnTrue() {
         UserInputValidation userInputValidation = new UserInputValidation();
@@ -30,6 +31,7 @@ public class UserInputValidationTest {
         boolean result = userInputValidation.isValidLastName("So");
         Assert.assertEquals(false, result);
     }
+
     @Test
     public void givenEmail_WhenValid_ShouldReturnTrue() {
         UserInputValidation userInputValidation = new UserInputValidation();
@@ -43,6 +45,7 @@ public class UserInputValidationTest {
         boolean result = userInputValidation.isValidEmail("Ravindra..675.gmail.com");
         Assert.assertEquals(false, result);
     }
+
     @Test
     public void givenMobileNum_WhenProper_ShouldReturnTrue() {
         UserInputValidation userInputValidation = new UserInputValidation();
@@ -56,6 +59,7 @@ public class UserInputValidationTest {
         boolean result = userInputValidation.isValidMobileNumber("908765-4321908");
         Assert.assertEquals(false, result);
     }
+
     @Test
     public void givenPassword_WhenProper_ShouldReturnTrue() {
         UserInputValidation userInputValidation = new UserInputValidation();
@@ -69,19 +73,21 @@ public class UserInputValidationTest {
         boolean result = userInputValidation.isValidPassword("Ravi123");
         Assert.assertEquals(false, result);
     }
+
     @Test
     public void givenPasswordWithOneUpperCHar_WhenProper_ShouldReturnTrue() {
         UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidPasswordOneUpperChar("Ravindra");
+        boolean result = userInputValidation.isValidPasswordOneUpperChar("Ravindrash");
         Assert.assertEquals(true, result);
     }
 
     @Test
     public void givenPasswordWithOneUpperCHar_WhenNotProper_ShouldReturnFalse() {
         UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidPasswordOneUpperChar("ravi..ra");
+        boolean result = userInputValidation.isValidPasswordOneUpperChar("ravi");
         Assert.assertEquals(false, result);
     }
+
     @Test
     public void givenPasswordWithNumeric_WhenProper_ShouldReturnTrue() {
         UserInputValidation userInputValidation = new UserInputValidation();
@@ -96,4 +102,17 @@ public class UserInputValidationTest {
         Assert.assertEquals(false, result);
     }
 
+    @Test
+    public void givenPasswordWithSpecialChar_WhenProper_ShouldReturnTrue() {
+        UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidPasswordWithSpecialChar("Ravindra123@");
+        Assert.assertEquals(true, result);
+    }
+
+    @Test
+    public void givenPasswordWithSpecialChar_WhenShort_ShouldReturnFalse() {
+        UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidPasswordWithSpecialChar("ravi@456..");
+        Assert.assertEquals(false, result);
+    }
 }
