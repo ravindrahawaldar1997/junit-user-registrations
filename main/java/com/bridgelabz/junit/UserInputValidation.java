@@ -65,6 +65,14 @@ public class UserInputValidation {
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
+    //Creating isValidPassword method to validate the password given by user using regex
+    public static boolean isValidPasswordWithSpecialChar(String password) {
+        System.out.println(password);
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_+=-]).{8,}$";
+        Pattern pattern = Pattern.compile(passwordRegex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
     public static void main(String[] args) {
         UserInputValidation userInputValidation = new UserInputValidation();
         Scanner scanner = new Scanner(System.in);
@@ -89,6 +97,9 @@ public class UserInputValidation {
         System.out.println("Eneter password with one Numeric: ");
         String passwordNumeric = scanner.next();
         System.out.println(userInputValidation.isValidPasswordWithNumeric(passwordNumeric) ? "Valid" : "In Valid");
+        System.out.println("Eneter password with one Special char: ");
+        String passwordWithSpecialChar = scanner.next();
+        System.out.println(userInputValidation.isValidPasswordWithSpecialChar(passwordWithSpecialChar) ? "Valid" : "In Valid");
     }
 
     }
