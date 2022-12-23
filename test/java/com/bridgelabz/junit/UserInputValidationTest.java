@@ -59,27 +59,41 @@ public class UserInputValidationTest {
     @Test
     public void givenPassword_WhenProper_ShouldReturnTrue() {
         UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidMobileNumber("ravindra");
+        boolean result = userInputValidation.isValidPassword("ravindra");
         Assert.assertEquals(true, result);
     }
 
     @Test
     public void givenPassword_WhenNotProper_ShouldReturnFalse() {
         UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidMobileNumber("Ravi123");
+        boolean result = userInputValidation.isValidPassword("Ravi123");
         Assert.assertEquals(false, result);
     }
     @Test
     public void givenPasswordWithOneUpperCHar_WhenProper_ShouldReturnTrue() {
         UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidMobileNumber("Ravindra");
+        boolean result = userInputValidation.isValidPasswordOneUpperChar("Ravindra");
         Assert.assertEquals(true, result);
     }
 
     @Test
     public void givenPasswordWithOneUpperCHar_WhenNotProper_ShouldReturnFalse() {
         UserInputValidation userInputValidation = new UserInputValidation();
-        boolean result = userInputValidation.isValidMobileNumber("ravi..ra");
+        boolean result = userInputValidation.isValidPasswordOneUpperChar("ravi..ra");
         Assert.assertEquals(false, result);
     }
+    @Test
+    public void givenPasswordWithNumeric_WhenProper_ShouldReturnTrue() {
+        UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidPasswordWithNumeric("Ravindra123");
+        Assert.assertEquals(true, result);
+    }
+
+    @Test
+    public void givenPasswordWithNumeric_WhenShort_ShouldReturnFalse() {
+        UserInputValidation userInputValidation = new UserInputValidation();
+        boolean result = userInputValidation.isValidPasswordWithNumeric("ravi@456");
+        Assert.assertEquals(false, result);
+    }
+
 }
