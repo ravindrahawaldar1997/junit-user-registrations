@@ -27,7 +27,7 @@ public class UserInputValidation {
 
         String emailRegex = "^[a-zA-Z0-9_+-]+(?:\\.[a-zA-Z0-9_+-]+)*@" +
                 "([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}" +
-                "(?:(\\.([A-Za-z]{2})))?$";;
+                "(?:(\\.([A-Za-z]{2})))?$";
 
         Pattern pattern = Pattern.compile(emailRegex);
 
@@ -45,7 +45,7 @@ public class UserInputValidation {
     //Creating isValidPassword method to validate the password given by user using regex
     public static boolean isValidPassword(String password) {
         System.out.println(password);
-        String passwordRegex = "^[a-z]{8}$";
+        String passwordRegex = "^[a-z]{8,}$";
         Pattern pattern = Pattern.compile(passwordRegex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
@@ -53,12 +53,18 @@ public class UserInputValidation {
     //Creating isValidPassword method to validate the password given by user using regex
     public static boolean isValidPasswordOneUpperChar(String password) {
         System.out.println(password);
-        String passwordRegex = "^[A-Z]{1}[a-z]{7}$";
+        String passwordRegex = "^[A-Z]{1}[a-z]{8,}$";
         Pattern pattern = Pattern.compile(passwordRegex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
-
+    public static boolean isValidPasswordWithNumeric(String password) {
+        System.out.println(password);
+        String passwordRegex =  "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$";
+        Pattern pattern = Pattern.compile(passwordRegex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
     public static void main(String[] args) {
         UserInputValidation userInputValidation = new UserInputValidation();
         Scanner scanner = new Scanner(System.in);
@@ -80,7 +86,9 @@ public class UserInputValidation {
         System.out.println("Eneter password with one upper char: ");
         String passwordUpperChar = scanner.next();
         System.out.println(userInputValidation.isValidPasswordOneUpperChar(passwordUpperChar) ? "Valid" : "In Valid");
-        scanner.close();
+        System.out.println("Eneter password with one Numeric: ");
+        String passwordNumeric = scanner.next();
+        System.out.println(userInputValidation.isValidPasswordWithNumeric(passwordNumeric) ? "Valid" : "In Valid");
     }
 
     }
